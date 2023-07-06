@@ -2,7 +2,7 @@
     export let clicked: () => void;
 </script>
 
-<button class="keyValue" on:click={clicked}>
+<button class="btn p-6 m-0.5 rounded-sm border border-stone-400" on:click={clicked}>
     <slot></slot>
 </button>
 

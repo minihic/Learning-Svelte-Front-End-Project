@@ -12,12 +12,12 @@
     }
 </script>
 
-<section class="calculator">
+<section class="flex flex-col">
     <div class="output">
 
     </div>
 
-    <div class="calc-input">
+    <div class="container border-stone-400">
         {numberInput}
     </div>
 
