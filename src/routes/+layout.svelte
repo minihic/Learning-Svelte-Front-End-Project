@@ -19,7 +19,7 @@
     
   </div>
 
-  <footer class="p-2 pl-4 bg-stone-900 border-slate-400 border-t text-slate-50">
+  <footer class="p-2 pl-4 bg-stone-900 border-slate-400 border-t text-slate-50 font-mono font-thin">
     <p>Test Project App - 2023</p>
   </footer>
 </div>
