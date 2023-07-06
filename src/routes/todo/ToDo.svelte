@@ -26,7 +26,7 @@
 
     //Filter Todos
     let filterState: string = "all";
-    let displayedTodos = todos.map(todo)
+    // let displayedTodos = todos.map(todo)
 
 
 </script>
