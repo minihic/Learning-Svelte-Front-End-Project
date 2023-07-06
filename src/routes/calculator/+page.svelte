@@ -37,7 +37,7 @@
       <CalcKey clicked={() => addToInput(3)}>3</CalcKey>
       <CalcKey clicked={() => addToInput("x")}>x</CalcKey>
 
-      <CalcKey span={3} clicked={() => clear()}>clear</CalcKey>
+      <CalcKey clicked={() => clear()}>clear</CalcKey>
       <CalcKey clicked={() => addToInput(0)}>0</CalcKey>
       <CalcKey clicked={() => addToInput("=")}>=</CalcKey>
       <CalcKey clicked={() => addToInput("/")}>/</CalcKey>
