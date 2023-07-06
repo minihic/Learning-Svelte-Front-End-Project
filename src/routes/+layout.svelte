@@ -10,8 +10,8 @@
   <div class="flex flex-row h-screen">
     <Navbar />
 
-    <div class="flex flex-col w-screen">
-      <div id="content" class="flex flex-auto p-8">
+    <div class="flex flex-col  w-screen">
+      <div id="content" class="flex flex-auto justify-center p-8">
         <slot />
       </div>
     </div>
