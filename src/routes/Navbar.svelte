@@ -1,4 +1,4 @@
-<nav class="flex flex-col w-72 p-2 bg-stone-50 border-r">
+<nav class="flex flex-col w-72 p-2 pl-4 bg-stone-50 border-r">
     <ul class="text-stone-800 bold">
         <li>
             <a href="/calculator">Calculators App</a>
