@@ -1,5 +1,5 @@
-<nav class="flex flex-col left-0 p-4 border-black border-4">
-    <ul>
+<nav class="flex flex-col w-72 p-2 bg-stone-50 border-r">
+    <ul class="text-stone-800 bold">
         <li>
             <a href="/calculator">Calculators App</a>
         </li>

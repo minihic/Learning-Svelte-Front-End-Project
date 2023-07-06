@@ -1,3 +1,5 @@
-<header class="border-black border-4 p-6 w-screen">
-    <h1 class="text-3xl">Test App</h1>
+<header class="p-2 bg-stone-900 border-slate-400 border-b text-slate-50">
+    <h1 class="text-3xl text-slate-50 font-mono">
+        <a href="/">Header</a>
+    </h1>
 </header>
