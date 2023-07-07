@@ -1,6 +1,7 @@
 <script lang="ts">
     let todo: { id: number; completed: boolean; name: string };
     export let todos: (typeof todo)[];
+    let filteredTodos: (typeof todo)[];
 
     //Todos properties
     $: totalTodos = todos.length;
@@ -25,8 +26,20 @@
     }
 
     //Filter Todos
-    let filterState: string = "all";
-    // let displayedTodos = todos.map(todo)
+    let filterState: "all" | "completed" | "not completed";
+    $: {
+        switch (filterState) {
+            case "all":
+                filteredTodos = todos;
+                break;
+            case "completed":
+                filteredTodos = todos.filter((todo) => todo.completed);
+                break;
+            case "not completed":
+                filteredTodos = todos.filter((todo) => !todo.completed);
+                break;
+        }
+    }
 </script>
 
 <div class="flex flex-col">
@@ -41,7 +54,7 @@
         </button>
         <button
             class="p-1 px-3 m-1 rounded border border-stone-400 font-mono"
-            on:click={() => (filterState = "active")}
+            on:click={() => (filterState = "not completed")}
         >
             <span>Active</span>
         </button>
@@ -92,8 +105,12 @@
 
     <hr />
 
-    <div>
-        <button>Check all</button>
-        <button>Remove completed</button>
+    <div class="flex py-3 flex-row justify-between">
+        <button class="p-1 px-3 m-1 rounded border border-stone-400 font-mono"
+            >Check all</button
+        >
+        <button class="p-1 px-3 m-1 rounded border border-stone-400 font-mono"
+            >Remove completed</button
+        >
     </div>
 </div>
