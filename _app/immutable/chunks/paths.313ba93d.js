@@ -1,0 +1,1 @@
+var s;const t=((s=globalThis.__sveltekit_1vnv68j)==null?void 0:s.base)??"/Learning-Svelte-Front-End-Project";var e;const a=((e=globalThis.__sveltekit_1vnv68j)==null?void 0:e.assets)??t;export{a,t as b};
