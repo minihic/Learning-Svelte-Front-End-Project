@@ -1,7 +1,10 @@
 <script lang="ts">
   import { onMount } from "svelte";
+  import { browser } from "$app/environment";
 
-  import L from 'leaflet?client';
+  // Case2 vite-plugin-iso-import
+
+  import L from "leaflet?client";
 
   let map;
   let initialViewPosition = {
@@ -18,8 +21,9 @@
       closePopupOnClick: false,
     }).setView(initialViewPosition, zoom);
 
-    // base map 'OpenStreetMap'
+    // base map
     L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      maxZoom: 19,
       attribution:
         '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
@@ -36,6 +40,6 @@
   #map {
     /* width: calc(100vw - 420px) ; */
     width: 100%;
-    height: 420px;
+    height: 100vh;
   }
 </style>
