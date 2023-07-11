@@ -1,8 +1,7 @@
-<script>
+<script lang="ts">
   import { onMount } from "svelte";
-  import { browser } from "$app/environment";
 
-  import L from "leaflet?client";
+  import L from 'leaflet?client';
 
   let map;
   let initialViewPosition = {
@@ -19,24 +18,24 @@
       closePopupOnClick: false,
     }).setView(initialViewPosition, zoom);
 
-    // base map 'VWorld'
-    L.tileLayer("https://xdworld.vworld.kr/2d/Base/service/{z}/{x}/{y}.png", {
-      attribution: '© <a href="https://gsenc.com/">GS ENC</a> contributors',
+    // base map 'OpenStreetMap'
+    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution:
+        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
     }).addTo(map);
   });
 </script>
 
-
 <div>
-  <div id="map"></div>
+  <div id="map" />
 </div>
 
 <style>
   /* css required! */
-  @import 'https://unpkg.com/leaflet@1.7.1/dist/leaflet.css';
+  @import "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css";
   #map {
-      /* width: calc(100vw - 420px) ; */
-      width: 100%;
-      height: 100vh;
+    /* width: calc(100vw - 420px) ; */
+    width: 100%;
+    height: 420px;
   }
 </style>

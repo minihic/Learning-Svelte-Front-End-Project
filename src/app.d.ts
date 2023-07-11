@@ -9,8 +9,6 @@ declare global {
 	}
 }
 
-export {};
-
 declare module 'leaflet?client' {
 	import all from 'leaflet'
 	export = all
