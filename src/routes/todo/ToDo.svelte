@@ -9,7 +9,7 @@
 
     //Adding a todo
     let newTodoName: string = "";
-    $: newTodoid = Math.max(...todos.map((todo) => todo.id)) + 1;
+    $: newTodoid = (totalTodos === 0) ? 0 : Math.max(...todos.map((todo) => todo.id)) + 1;
 
     function add() {
         todos = [
