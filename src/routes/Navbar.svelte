@@ -11,5 +11,8 @@
         <li>
             <a href="{base}/todo">Todo App</a>
         </li>
+        <li>
+            <a href="{base}/map">Map App</a>
+        </li>
     </ul>
 </nav>
