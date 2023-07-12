@@ -1,38 +1,39 @@
-<script lang="ts">
-  import { onMount } from "svelte";
+<script lang="js">
+  import { onMount, onDestroy } from "svelte";
   import { browser } from "$app/environment";
+  import Button from "./Button.svelte";
 
-  // Case2 vite-plugin-iso-import
-
-  import L from "leaflet?client";
-
+  // @ts-ignore
   let map;
-  let initialViewPosition = {
-    lat: 37.57,
-    lng: 126.983,
-  };
-  let zoom = 17;
+  // @ts-ignore
+  let mapElement;
 
-  onMount(() => {
-    map = L.map("map", {
-      minZoom: 12,
-      maxZoom: 18,
-      zoomControl: false,
-      closePopupOnClick: false,
-    }).setView(initialViewPosition, zoom);
+  onMount(async () => {
+        if(browser) {
+            const leaflet = await import('leaflet');
 
-    // base map
-    L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      maxZoom: 19,
-      attribution:
-        '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>',
-    }).addTo(map);
-  });
+            // @ts-ignore
+            map = leaflet.map(mapElement).setView([49.787096845994895, 6.131346063299729], 10);
+
+            leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+            leaflet.marker([49.61165613164213, 6.13193403682879]).addTo(map)
+                .bindPopup('<Button>Luxembourg<Button/>');
+        }
+    });
+
+    onDestroy(async () => {
+        // @ts-ignore
+        if(map) {
+            console.log('Unloading Leaflet map.');
+            map.remove();
+        }
+    });
 </script>
 
-<div>
-  <div id="map" />
-</div>
+  <div bind:this={mapElement} id="map" />
 
 <style>
   /* css required! */
@@ -40,6 +41,6 @@
   #map {
     /* width: calc(100vw - 420px) ; */
     width: 100%;
-    height: 100vh;
+    height: 100%;
   }
 </style>
