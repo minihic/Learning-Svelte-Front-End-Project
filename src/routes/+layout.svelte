@@ -1,17 +1,17 @@
 <script>
   import "../app.css";
-  import Header from "./Header.svelte";
-  import Navbar from "./Navbar.svelte";
+  import Header from "../lib/Header.svelte";
+  import Navbar from "../lib/Navbar.svelte";
 </script>
 
 <div class="flex flex-col h-screen text-stone-800 bg-stone-50">
-  <Header />
+  <Header/>
 
   <div class="flex flex-row h-screen">
-    <Navbar />
+    <Navbar/>
 
     <div class="flex flex-col  w-screen">
-      <div id="content" class="flex flex-auto justify-center p-8">
+      <div id="content" class="flex flex-auto justify-center">
         <slot />
       </div>
     </div>
