@@ -1,25 +1,16 @@
-## Learning Project
+## Setting up the project
 
-Technologies used:
-- SvelteKit
-- Tailwind
-- Typescript
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
+Make sure to install all the npm dependencies with the following
 
 ```bash
-# create a new project in the current directory
-npm create svelte@latest
+# install all the dependecies
+npm install
 
-# create a new project in my-app
-npm create svelte@latest my-app
 ```
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've created the project and installed dependencies, start a development server by running:
 
 ```bash
 npm run dev
@@ -34,8 +25,16 @@ To create a production version of your app:
 
 ```bash
 npm run build
+
+# and preview your build with 
+npm run preview
 ```
 
-You can preview the production build with `npm run preview`.
+To create a Github pages ready version:
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+```bash
+npm run gh-pages
+```
+
+
+>The app is currently setup to build for Github pages for static site generation.
