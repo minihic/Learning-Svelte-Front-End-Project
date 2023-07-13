@@ -10,12 +10,14 @@
     lng: 6.13193403682879,
   };
   let zoom = 10;
+  let marker1: any;
 
   $: toggleMarker($activeMarkers.marker1);
 
-  let marker1 = L.marker([49.61165613164213, 6.13193403682879]);
-
   function toggleMarker(activeMarkers: boolean) {
+    if (marker1 === undefined) {
+      return;
+    }
     if (activeMarkers) {
       marker1.addTo(map).bindPopup("<Button>Luxembourg<Button/>");
       console.log("toggle on");
@@ -27,9 +29,9 @@
 
   onMount(async () => {
     if (browser) {
-      const L = await import('leaflet');
-
       map = L.map("map").setView(initialViewPosition, zoom);
+
+      marker1 = L.marker([49.61165613164213, 6.13193403682879]);
 
       L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution:
@@ -44,7 +46,6 @@
       map.remove();
     }
   });
-
 </script>
 
 <div id="map" />
