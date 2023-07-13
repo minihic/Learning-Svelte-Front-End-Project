@@ -1,6 +1,7 @@
-<script>
+<script lang="ts">
 
     import NavbarElement from "./NavbarElement.svelte";
+    import { activeMarkers } from "./stores";
 
 </script>
 <nav class="flex flex-col resize-x w-72 p-2 pl-4 bg-stone-50 border-r">
@@ -10,6 +11,8 @@
         <NavbarElement name="Map" path="map"/>
     </ul>
     <ul>
-        <div>Select Markers</div>
+        <button on:click={() => {$activeMarkers.marker1 = !$activeMarkers.marker1}}>
+            <div>Select Markers</div>
+        </button>
     </ul>
 </nav>

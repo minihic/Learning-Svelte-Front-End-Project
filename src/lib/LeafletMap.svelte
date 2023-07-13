@@ -1,45 +1,54 @@
-<script lang="js">
+<script lang="ts">
   import { onMount, onDestroy } from "svelte";
-  import { browser } from "$app/environment";
-  import Button from "./Button.svelte";
+  import Leaflet from "leaflet?client";
+  import { activeMarkers } from "./stores";
 
-  // @ts-ignore
-  let map;
-  // @ts-ignore
-  let mapElement;
+  let map: Leaflet.Map;
+  let initialViewPosition = {
+    lat: 49.61165613164213,
+    lng: 6.13193403682879,
+  };
+  let zoom = 10;
 
-  onMount(async () => {
-        if(browser) {
-            const leaflet = await import('leaflet');
+  $: toggleMarker($activeMarkers.marker1)
 
-            // @ts-ignore
-            map = leaflet.map(mapElement).setView([49.787096845994895, 6.131346063299729], 10);
+  onMount(() => {
+    map = Leaflet.map("map").setView(initialViewPosition, zoom);
 
-            leaflet.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-                attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            }).addTo(map);
+    Leaflet.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      attribution:
+        '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    }).addTo(map);
 
-            leaflet.marker([49.61165613164213, 6.13193403682879]).addTo(map)
-                .bindPopup('<Button>Luxembourg<Button/>');
-        }
-    });
+  });
 
-    onDestroy(async () => {
-        // @ts-ignore
-        if(map) {
-            console.log('Unloading Leaflet map.');
-            map.remove();
-        }
-    });
+  let marker1 = Leaflet.marker([49.61165613164213, 6.13193403682879])
+
+
+  function toggleMarker(activeMarkers: boolean) {
+    console.log($activeMarkers);
+    if (activeMarkers) {
+      marker1.addTo(map).bindPopup("<Button>Luxembourg<Button/>");
+        console.log("toggle on");
+    } else if (!activeMarkers) {
+       marker1.removeFrom(map)
+       console.log("toggle off");
+    }
+  }
+
+  // onDestroy(async () => {
+  //   if (map) {
+  //     console.log("Unloading Leaflet map.");
+  //     map.remove();
+  //   }
+  // });
 </script>
 
-  <div bind:this={mapElement} id="map" />
+<div id="map" />
 
 <style>
-  /* css required! */
   @import "https://unpkg.com/leaflet@1.7.1/dist/leaflet.css";
   #map {
-    /* width: calc(100vw - 420px) ; */
     width: 100%;
     height: 100%;
   }
