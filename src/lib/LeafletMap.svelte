@@ -1,6 +1,7 @@
 <script lang="ts">
   import * as L from "leaflet?client";
   import { onMount, onDestroy } from "svelte";
+  import { browser } from "$app/environment";
   import { activeMarkers } from "./stores";
 
   let map: any;
@@ -24,21 +25,26 @@
     }
   }
 
-  onMount(() => {
-    map = L.map("map").setView(initialViewPosition, zoom);
+  onMount(async () => {
+    if (browser) {
+      const L = await import('leaflet');
 
-    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-      attribution:
-        '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
-    }).addTo(map);
+      map = L.map("map").setView(initialViewPosition, zoom);
+
+      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        attribution:
+          '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      }).addTo(map);
+    }
   });
 
-  onDestroy(() => {
+  onDestroy(async () => {
     if (map) {
       console.log("Unloading map.");
       map.remove();
     }
   });
+
 </script>
 
 <div id="map" />
