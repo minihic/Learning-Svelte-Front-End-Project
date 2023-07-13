@@ -1,9 +1,9 @@
 <script lang="ts">
   import { onMount, onDestroy } from "svelte";
-  import Leaflet from "leaflet?client";
+  import L from "leaflet?client";
   import { activeMarkers } from "./stores";
 
-  let map: Leaflet.Map;
+  let map: L.Map;
   let initialViewPosition = {
     lat: 49.61165613164213,
     lng: 6.13193403682879,
@@ -13,16 +13,16 @@
   $: toggleMarker($activeMarkers.marker1)
 
   onMount(() => {
-    map = Leaflet.map("map").setView(initialViewPosition, zoom);
+    map = L.map("map").setView(initialViewPosition, zoom);
 
-    Leaflet.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+    L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
       attribution:
         '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
     }).addTo(map);
 
   });
 
-  let marker1 = Leaflet.marker([49.61165613164213, 6.13193403682879])
+  let marker1 = L.marker([49.61165613164213, 6.13193403682879])
 
 
   function toggleMarker(activeMarkers: boolean) {
@@ -36,12 +36,12 @@
     }
   }
 
-  // onDestroy(async () => {
-  //   if (map) {
-  //     console.log("Unloading Leaflet map.");
-  //     map.remove();
-  //   }
-  // });
+  onDestroy(() => {
+    if (map) {
+      console.log("Unloading map.");
+      map.remove();
+    }
+  });
 </script>
 
 <div id="map" />
