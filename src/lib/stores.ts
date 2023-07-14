@@ -1,14 +1,11 @@
-import { writable } from "svelte/store";
+import { writable, type Writable } from "svelte/store";
 
-export enum ElementLayer {
-    marker1 = "marker1",
-    polygon = "polygon",
-    marker2 = "marker2"
-  }
-  
-  export const activeElementLayers = writable<Record<ElementLayer, boolean>>({
-    [ElementLayer.marker1]: false,
-    [ElementLayer.polygon]: false,
-    [ElementLayer.marker2]: false,
-  });
-  
+export const marker1 = writable(false);
+
+export const marker2 = writable(false);
+
+export const polygon = writable(false);
+
+export const layers: Writable<Array<Layer>> = writable([])
+
+type Layer = {id: number, value: boolean, name: string}
