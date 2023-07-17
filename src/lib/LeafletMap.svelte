@@ -6,6 +6,7 @@
   import { marker1 } from "./stores";
   import { marker2 } from "./stores";
   import { polygon } from "./stores";
+  import { layers } from "./stores";
 
   let map: any;
   let initialViewPosition = {
@@ -15,6 +16,9 @@
   let layerMarker1: L.Marker<any>;
   let layerMarker2: L.Marker<any>;
   let layerPolygon: L.Polygon<any>;
+
+  
+
 
   $: updateMarker(layerMarker1, $marker1)
 
